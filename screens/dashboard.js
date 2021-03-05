@@ -122,9 +122,9 @@ export default class Dashboard extends Component{
                         
                     </View> 
                 </View>
-                <View style={{padding:10}}>
-                    <Image style={{resizeMode:'cover', width:330}} source={require('../assets/images/b1.png')}/>
-                </View>    
+                {/* <View style={{padding:10, }}> */}
+                    <Image style={{resizeMode:'cover',margin:5, width:'100%'}} source={require('../assets/images/b1.png')}/>
+                {/* </View>     */}
             </ScrollView>
 
         );

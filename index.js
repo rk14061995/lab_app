@@ -1,6 +1,6 @@
 import { registerRootComponent } from 'expo';
 // import App from './screens/splash';
-import App from './screens/dashboard';
+import App from './screens/LabList';
 // import App from './App';
 
 // registerRootComponent calls AppRegistry.registerComponent('main', () => App);
