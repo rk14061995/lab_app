@@ -41,7 +41,11 @@ const LabList= ()=>{
                               {
                                 api.map(ap=>{
                                   return <View style={{backgroundColor:'red'}}>
-
+                                      <Text> {ap.name}</Text>
+                                      <Text> {ap.Id}</Text>
+                                      <Text> {ap.startTime}</Text>
+                                      <Text> {ap.closeTime}</Text>
+                                      {/* <Text> {ap.name}</Text> */}
                                   </View>
                                 })
                               }
