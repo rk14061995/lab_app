@@ -2,19 +2,19 @@ import React from 'react';
 import { Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import Dashboard from './screens/dashboard';
-import Register from './screens/registraion';
+import Splash from './screens/splash';
+import Registration from './screens/Registration';
 import Login from './screens/login';
-
+// import Dashboard from './screens/dashboard';
 
 
 
 const Stack =  createStackNavigator();
 const StackNavigator = ()=>(
-  <Stack.Navigator>
+  <Stack.Navigator initialRouteName="Splash">
     <Stack.Screen name="Splash" component={Splash} />
     <Stack.Screen name="Login" component={Login} />
-    <Stack.Screen name="Register" component={Register}/>
+    <Stack.Screen name="Register" component={Registration}/>
   
   </Stack.Navigator>
 )

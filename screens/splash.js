@@ -2,20 +2,22 @@ import React,{Component} from 'react';
 import {View,Image,SafeAreaView, StyleSheet, ActivityIndicator, Button} from 'react-native';
 var logo = require('../assets/images/heal_logo.png')
 export default class Splash extends Component{
-    // constructor(props){
-
-    // }
-    // state={
-
-    // }
     render(){
         return(
             <SafeAreaView style={styles.container}>
                 <Image source={require('../assets/images/heal_logo.png')}/>
                 <ActivityIndicator size="large" color="#0000ff" style={styles.loader}/>
-                <Button onPress={()=>{
-                  this.props.navigation.navigate('Dashboard')
-                }}> Click Here</Button>
+                {
+                    setInterval(()=>{
+                      this.props.navigation.navigate('Login')
+                    },3000)             
+                }
+                {/* <Button onPress={()=>{
+                  setInterval(()=>{
+                    this.props.navigation.navigation('Login')
+                  },3000)
+                  // this.props.navigation.navigate('Login')
+                }} title="Login"/> */}
                 </SafeAreaView>
         );
     }
