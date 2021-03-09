@@ -1,10 +1,19 @@
-import React,{useState} from 'react';
+import React,{useState, useEffect} from 'react';
 import {View,Image,Text, StyleSheet, StatusBar,ScrollView,TextInput, TouchableOpacity,Button, SafeAreaView} from 'react-native';
+import { getLabListById } from '../api/apicalls'
 const styles = StyleSheet.create({
    
   });
 
 const LabDetails= ()=>{
+
+  // const [api, setApi ] = useState([])
+
+  // const preLoad = () => {
+  //   getLabListById().then(response => {
+  //     setApi(response.responseData)
+  //   })
+  // }
   const api = [
                 {
                     id:1,
@@ -56,16 +65,35 @@ const Test = {
                     },
                     ]
               };
-              console.log(Test.responseData);
+              // console.log(Test.responseData);
             
     return(
         <SafeAreaView style={{padding:15}}>
           {/* <View>
             <Text style={{fontSize:15,fontWeight:'bold', padding:10}}>Lab List</Text>
           </View> */}
-          <View style={{backgroundColor:'red'}}>
-            <Text style={{fontSize:15,fontWeight:'bold', padding:10}}>Lab List</Text>
-          </View>
+         {Test.map(ap => (
+           <TouchableOpacity onPress={() => {
+            console.debug(' Get Lab Details.. ');
+          }}>
+            <View key={ap.Id} style={{ backgroundColor: 'red', padding: 10, marginTop: 10, marginBottom: 10, flexDirection: 'row' }}>
+              <View style={{ backgroundColor: 'white', padding: 15, width: '25%', alignItems: 'center' }}>
+                <Image source={require('../assets/images/med.png')} style={{ width: 50, height: 50 }} />
+              </View>
+              <View style={{ backgroundColor: 'lightgrey', padding: 10, width: '75%' }}>
+                <Text style={{ fontSize: 15, fontWeight: 'bold', textDecorationLine: 'underline' }}> {ap.name}</Text>
+                <Text>{ap.desc}</Text>
+                <Text > {ap.Id}</Text>
+                <View style={{ flexDirection: 'row' }}>
+                  <Text> {ap.startTime} - </Text>
+                  <Text> {ap.closeTime}</Text>
+                  <Text style={{ textAlign: 'right' }}> {ap.location}</Text>
+                </View>
+
+              </View>
+            </View>
+          </TouchableOpacity>
+         ))}
            
         </SafeAreaView>
     );
