@@ -1,5 +1,5 @@
-export const getLabListById = () => {
-    return fetch(`https://avicennatest.patientheal.com/Services/api/LabRequestService/GetTestListByLabId?LabId=1`, {
+export const getLabList = () => {
+    return fetch(`https://avicennatest.patientheal.com/Services/api/ManageLabService/GetAllLabDetails?Action=ALL`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -9,3 +9,4 @@ export const getLabListById = () => {
         return response.json()
     }).catch(err => console.log(err))
 }
+

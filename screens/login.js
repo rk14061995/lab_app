@@ -1,5 +1,7 @@
 import React,{Component} from 'react';
 import {View,Image,Text, StyleSheet, StatusBar,TextInput, TouchableOpacity,Button} from 'react-native';
+import { NavigationContainer, useNavigation } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 const styles = StyleSheet.create({
     top_lab:{
       backgroundColor:'grey',
@@ -80,13 +82,14 @@ const styles = StyleSheet.create({
       color:'white'
     }
   });
+
 export default class Login extends Component{
-    constructor(props){
-        super(props);        
-    }
+  
     render(){
         return (
+            
             <View style={styles.container_login}>
+              
               <Image style={styles.image} source={require("../assets/images/dib.png")} />
         
               <StatusBar style="auto" />
@@ -113,26 +116,15 @@ export default class Login extends Component{
                 <Text style={styles.forgot_button}>Forgot Password?</Text>
               </TouchableOpacity>
         
-              {/* <TouchableOpacity style={styles.loginBtn}> */}
-                {/* <Text style={styles.loginText}>LOGIN</Text> */}
                 <Button title="login" style={styles.loginBtn} onPress={()=>{
-                //   navigation.navigate('Dashboard')
-                  // console.debug('Redirect to Register Page');
+                this.props.navigation.navigate('Dashboard')
+                  
         
                 }}></Button>
-              {/* </TouchableOpacity> */}
-              {/* <TouchableOpacity>
-                <Text>New Registration.</Text> */}
-              {/* </TouchableOpacity> */}
-              
-              {/* <TouchableOpacity style={styles.register_now} > */}
-                <Button title="New Registeration ?" style={styles.loginBtn} onPress={()=>{
-                  navigation.navigate('Register')
-                  // console.debug('Redirect to Register Page');
-        
+                <Button title="New Registration ?" style={styles.loginBtn} onPress={()=>{
+                  this.props.navigation.navigate('Register')
                 }}></Button>
-                {/* <Text style={styles.loginText} onPress={console.debug('Redirect to Register Page')}>Register Now</Text> */}
-              {/* </TouchableOpacity> */}
+             
             </View>
           ); 
     }

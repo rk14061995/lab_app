@@ -146,7 +146,6 @@ const LabList = () => {
                   </View>
 
                 </View>
-                {/* <Text> {ap.name}</Text> */}
               </View>
             </TouchableOpacity>
 
