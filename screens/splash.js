@@ -9,15 +9,10 @@ export default class Splash extends Component{
                 <ActivityIndicator size="large" color="#0000ff" style={styles.loader}/>
                 {
                     setInterval(()=>{
-                      this.props.navigation.navigate('Login')
+                      this.props.navigation.replace('Login')
                     },3000)             
                 }
-                {/* <Button onPress={()=>{
-                  setInterval(()=>{
-                    this.props.navigation.navigation('Login')
-                  },3000)
-                  // this.props.navigation.navigate('Login')
-                }} title="Login"/> */}
+                
                 </SafeAreaView>
         );
     }

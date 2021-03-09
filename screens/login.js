@@ -117,7 +117,7 @@ export default class Login extends Component{
               </TouchableOpacity>
         
                 <Button title="login" style={styles.loginBtn} onPress={()=>{
-                this.props.navigation.navigate('Dashboard')
+                this.props.navigation.replace('Dashboard')
                   
         
                 }}></Button>

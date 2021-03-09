@@ -1,8 +1,6 @@
 import React,{Component} from 'react';
 import {View,Image,SafeAreaView, StyleSheet, ActivityIndicator, Button, ScrollView, Text, Item} from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-// var logo = require('../assets/images/heal_logo.png');
-// import { SliderBox } from "react-native-image-slider-box";
 export default class Dashboard extends Component{
     constructor(props) {
         super(props);
@@ -14,24 +12,10 @@ export default class Dashboard extends Component{
         ];
         this.categories=['Blood Test','Skin Test','Lipid Test','RBC Test'];
         this.labs=['Dr Path Lab','Batra Lab','Lal Path','Chabra Labss'];
-        
-        // this.state = {
-        //   images: [
-        //     // "https://source.unsplash.com/1024x768/?nature",
-        //     // "https://source.unsplash.com/1024x768/?water",
-        //     // "https://source.unsplash.com/1024x768/?girl",
-        //     // "https://source.unsplash.com/1024x768/?tree", // Network image
-        //     require('../assets/images/b1.png'),          // Local image
-        //     require('../assets/images/b3.png'),
-        //   ]
-        // };
       }
     render(){
         return(
             <ScrollView style={{flex:1, flexDirection:'column'}}>
-                {/* <View>
-                    <Image source={require('../assets/images/b1.png')}/>
-                </View> */}
                 <View>
                     <ScrollView  horizontal={true}
                         showsHorizontalScrollIndicator={false}
@@ -67,26 +51,12 @@ export default class Dashboard extends Component{
                                             <TouchableOpacity onPress={()=>{
                                                 console.debug(cate);
                                             }}>
-                                                
                                                 <Text style={{paddingBottom:13,paddingTop:13,color:'white' ,alignItems: "center",fontSize:15, fontWeight:'bold'}}>{cate}</Text>
                                             </TouchableOpacity>
                                             
                                         </View>
                                     ))
-                                }
-                                
-                                {/* <View style={{width: 140, height: 50, backgroundColor: 'orange',borderRadius:20, marginHorizontal:5, flex:1, flexDirection:'row'}}>
-                                    <Image source={require('../assets/images/blood.png')} style={{width:50,height:50}}/>
-                                    <Text style={{paddingBottom:13,paddingTop:13,color:'white' ,fontSize:15, fontWeight:'bold'}}>Skin Test</Text>
-                                </View>
-                                <View style={{width: 140, height: 50, backgroundColor: 'pink',borderRadius:20, marginHorizontal:5, flex:1, flexDirection:'row'}}>
-                                    <Image source={require('../assets/images/blood.png')} style={{width:50,height:50}}/>
-                                    <Text style={{paddingBottom:13,paddingTop:13,color:'white' ,fontSize:15, fontWeight:'bold'}}>Blood Test</Text>
-                                </View>
-                                <View style={{width: 140, height: 50, backgroundColor: 'orange',borderRadius:20, marginHorizontal:5, flex:1, flexDirection:'row'}}>
-                                    <Image source={require('../assets/images/blood.png')} style={{width:50,height:50}}/>
-                                    <Text style={{paddingBottom:13,paddingTop:13,color:'white' ,fontSize:15, fontWeight:'bold'}}>Skin Test</Text>
-                                </View> */}
+                                }         
                         </ScrollView>
                         
                     </View>
@@ -104,16 +74,13 @@ export default class Dashboard extends Component{
                             pagingEnabled>
                                 {
                                     this.labs.map(lab=>(
-                                        <View style={{width:100,height:120, backgroundColor:'white', padding:8,marginHorizontal:5,flexDirection:'column'}}>
-                                            
-                                            <Image source={require('../assets/images/dib.png')}/>
-                                            <TouchableOpacity onPress={()=>{
-                                                console.debug(lab)
+                                        <TouchableOpacity onPress={()=>{
+                                            this.props.navigation.navigate('LabDetails')
                                             }}>
-                                                <Text style={{fontSize:12}}>{lab}</Text>
-                                            </TouchableOpacity>
-                                            
-                                        </View>
+                                            <View style={{width:100,height:120, backgroundColor:'white', padding:8,marginHorizontal:5,flexDirection:'column'}}>
+                                                <Image source={require('../assets/images/dib.png')}/>
+                                            </View>
+                                        </TouchableOpacity>  
                                     ))
                                 }
                                 
