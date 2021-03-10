@@ -113,7 +113,7 @@ export default class Login extends Component{
               </View>
         
               <TouchableOpacity>
-                <Text style={styles.forgot_button}>Forgot Password?</Text>
+                <Text style={styles.forgot_button} >Forgot Password?</Text>
               </TouchableOpacity>
         
                 <Button title="login" style={styles.loginBtn} onPress={()=>{
