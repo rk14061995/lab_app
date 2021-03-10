@@ -6,6 +6,7 @@ import Splash from './screens/splash';
 import Registration from './screens/Registration';
 import Login from './screens/login';
 import LabDetails from './screens/LabDetails'
+import AppointementDetail from './screens/AppointementDetail'
 // import Dashboard from './screens/dashboard';
 
 
@@ -25,7 +26,7 @@ const App = () => {
     //   <StackNavigator/>
     // </NavigationContainer>
     <View>
-      <LabDetails/>
+      <Login/>
     </View>
   )
 }

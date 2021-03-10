@@ -15,16 +15,6 @@ export default class Dashboard extends Component {
         this.categories = ['Blood Test', 'Skin Test', 'Lipid Test', 'RBC Test'];
         this.labs = ['Dr Path Lab', 'Batra Lab', 'Lal Path', 'Chabra Labss'];
 
-        // this.state = {
-        //   images: [
-        //     // "https://source.unsplash.com/1024x768/?nature",
-        //     // "https://source.unsplash.com/1024x768/?water",
-        //     // "https://source.unsplash.com/1024x768/?girl",
-        //     // "https://source.unsplash.com/1024x768/?tree", // Network image
-        //     require('../assets/images/b1.png'),          // Local image
-        //     require('../assets/images/b3.png'),
-        //   ]
-        // };
     }
     render() {
         return (

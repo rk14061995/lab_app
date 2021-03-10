@@ -1,9 +1,7 @@
 import React,{useState, useEffect} from 'react';
 import {View,Image,Text, StyleSheet, StatusBar,ScrollView,TextInput, TouchableOpacity,Button, SafeAreaView} from 'react-native';
 import { getLabList } from '../api/apicalls'
-const styles = StyleSheet.create({
-   
-  });
+
 
 const LabDetails= ()=>{
 
@@ -18,44 +16,6 @@ const LabDetails= ()=>{
   useEffect(() => {
     preLoad()
   }, [])
-
-  
-// const Test = {
-//                 statusCode: 200,
-//                 responseData: [
-//                     {
-//                         testId: 10,
-//                         testName: "ECG",
-//                         isChecked: false,
-//                         color: 0,
-//                         testParameterName: null,
-//                         fileName: null,
-//                         normalRange: null,
-//                         presentValue: null
-//                     },
-//                     {
-//                         testId: 11,
-//                         testName: "Blood RE",
-//                         isChecked: false,
-//                         color: 0,
-//                         testParameterName: null,
-//                         fileName: null,
-//                         normalRange: null,
-//                         presentValue: null
-//                     },
-//                     {
-//                         testId: 12,
-//                         testName: "CBC + ESR",
-//                         isChecked: false,
-//                         color: 0,
-//                         testParameterName: null,
-//                         fileName: null,
-//                         normalRange: null,
-//                         presentValue: null
-//                     },
-//                     ]
-//               };
-              // console.log(Test.responseData);
             
     return(
         <SafeAreaView style={{padding:15}}>
