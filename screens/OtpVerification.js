@@ -1,7 +1,8 @@
-import React,{useState} from 'react';
-import {View,Image,Text, StyleSheet,Alert, StatusBar,TextInput, TouchableOpacity,Button} from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, Image, Text, StyleSheet, StatusBar, TextInput, TouchableOpacity, Button, Alert } from 'react-native';
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+
 const styles = StyleSheet.create({
   top_lab: {
     backgroundColor: 'grey',
@@ -51,11 +52,8 @@ const styles = StyleSheet.create({
   },
 
   TextInput: {
-    // backgroundColor:'red',
-    width:'100%',
     height: 50,
     flex: 1,
-    textAlign:'center',
     padding: 10,
     marginLeft: 20,
   },
@@ -67,7 +65,6 @@ const styles = StyleSheet.create({
 
   loginBtn: {
     width: "70%",
-    marginTop:5,
     borderRadius: 25,
     height: 50,
     alignItems: "center",
@@ -89,15 +86,14 @@ const styles = StyleSheet.create({
   }
 });
 
-const Login = ({ navigation}) => {
+const OtpVerification = ({ navigation}) => {
 
-  const [ login, setLogin ] = useState({
-    email: '',
-    password: ''
+  const [ verification, setVerification ] = useState({
+    otp: '',
   })
 
   const onChangeHandler = (inputName, inputValue) => {
-    setLogin(preValues => {
+    setVerification(preValues => {
       return {...preValues, [inputName]: inputValue}
     })
   }
@@ -105,70 +101,48 @@ const Login = ({ navigation}) => {
 
     <View style={styles.container_login}>
 
-      <Image style={styles.image} source={require("../assets/images/microscope.png")} />
+      <Image style={styles.image} source={require("../assets/images/password.png")} />
 
       <StatusBar style="auto" />
       <View style={styles.inputView}>
         <TextInput
           style={styles.TextInput}
-          placeholder="Email."
+          placeholder="OTP"
           placeholderTextColor="#003f5c"
-          value={login.email}
-          onChangeText={value => onChangeHandler('email', value)}
+          value={verification.otp}
+          onChangeText={value => onChangeHandler('otp', value)}
         />
       </View>
-
-      <View style={styles.inputView}>
-        <TextInput
-          style={styles.TextInput}
-          placeholder="Password."
-          placeholderTextColor="#003f5c"
-          secureTextEntry={true}
-          value={login.password}
-          onChangeText={value => onChangeHandler('password', value)}
-        />
-      </View>
-      <View>
-      <TouchableOpacity onPress={
-          ()=>{
-            
-          //   Alert.alert('');
-          //  const navigation= useNavigation(); 
-           navigation.navigate('OtpVerification');
-          }
-        }>
-          <Text style={styles.forgot_button} >Forgot Password?</Text>
-        </TouchableOpacity>
-      </View>
-      <View style={{marginTop:5,width:'70%'}}>
-        <Button title="login" style={{marginTop:10}} onPress={() => {
+      <View style={{width:'68%', borderRadius:25}}>
+        <Button title="Verify" style={styles.loginBtn} onPress={() => {
           // Alert.alert('Login Successfull')
-          Alert.alert(
-            'Alert Title',
-            'Login Successfull', // <- this part is optional, you can pass an empty string
-            [
-              {text: 'OK', onPress: () => navigation.navigate('Home')},
-            ],
-            // {cancelable: false},
-          )
+          { verification.otp == 1234 ? (
+            Alert.alert(
+                  'Alert Title',
+                  'Correct OTP', // <- this part is optional, you can pass an empty string
+                  [
+                    {text: 'OK', onPress: () => navigation.navigate('ResetPassword')},
+                  ],
+                  // {cancelable: false},
+                )
+          ): (
+              Alert.alert(
+                  'Alert Title',
+                  'Wrong OTP', // <- this part is optional, you can pass an empty string
+                  [
+                    {text: 'OK'},
+                  ],
+                  // {cancelable: false},
+                )
+          ) }
           // navigation.navigate('Home')
 
 
         }}></Button>
       </View>
-      <View style={{marginTop:5,width:'70%'}}>
-        <Button title="Create New Account." marginTop={20} onPress={() => {
-          
-          navigation.navigate('Register')
-        }}></Button>  
-      </View>
       
-
-      
-      
-
     </View>
   );
 }
 
-export default Login
+export default OtpVerification

@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
   },
   container_login: {
     flex: 1,
-    backgroundColor: "#cccffc",
+    backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
   },
@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
   },
 
   inputView: {
-    backgroundColor: "#fff",
+    backgroundColor: "#FFC0CB",
     borderRadius: 30,
     width: "70%",
     height: 45,
@@ -51,11 +51,8 @@ const styles = StyleSheet.create({
   },
 
   TextInput: {
-    // backgroundColor:'red',
-    width:'100%',
     height: 50,
     flex: 1,
-    textAlign:'center',
     padding: 10,
     marginLeft: 20,
   },
@@ -129,12 +126,19 @@ const Login = ({ navigation}) => {
         />
       </View>
       <View>
-      <TouchableOpacity onPress={
+        <TouchableOpacity onPress={
           ()=>{
-            
+            Alert.alert(
+              'Alert Title',
+              'Login Successfull', // <- this part is optional, you can pass an empty string
+              [
+                {text: 'OK', onPress: () => navigation.navigate('Home')},
+              ],
+              // {cancelable: false},
+            )
           //   Alert.alert('');
           //  const navigation= useNavigation(); 
-           navigation.navigate('OtpVerification');
+          //  navigation.navigate('OtpVerification');
           }
         }>
           <Text style={styles.forgot_button} >Forgot Password?</Text>

@@ -106,7 +106,7 @@ const [api, setApi ] = useState([])
                     />
                     <TouchableOpacity
                       onPress={() => {
-                        props.navigation.navigate('LabDetails')
+                        props.navigation.navigate('Notification')
                       }}
                     >
                       <Text
