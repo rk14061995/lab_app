@@ -84,16 +84,16 @@ const styles = StyleSheet.create({
   }
 });
 
-const Login = ({ navigation}) => {
+const ResetPassword = ({ navigation}) => {
 
-  const [ login, setLogin ] = useState({
-    email: '',
-    password: ''
+  const [ reset, setReset ] = useState({
+    password: '',
+    confirmPassword: ''
   })
 
   const onChangeHandler = (inputName, inputValue) => {
     console.debug(inputName + ' ' + inputValue)
-    setLogin(preValues => {
+    setReset(preValues => {
       return {...preValues, [inputName]: inputValue}
     })
   }
@@ -107,35 +107,31 @@ const Login = ({ navigation}) => {
       <View style={styles.inputView}>
         <TextInput
           style={styles.TextInput}
-          placeholder="Email."
+          placeholder="Password"
           placeholderTextColor="#003f5c"
-          value={login.email}
-          onChangeText={value => onChangeHandler('email', value)}
+          value={reset.password}
+          onChangeText={value => onChangeHandler('password', value)}
         />
       </View>
 
       <View style={styles.inputView}>
         <TextInput
           style={styles.TextInput}
-          placeholder="Password."
+          placeholder="Confirm Password"
           placeholderTextColor="#003f5c"
           secureTextEntry={true}
-          value={login.password}
-          onChangeText={value => onChangeHandler('password', value)}
+          value={reset.confirmPassword}
+          onChangeText={value => onChangeHandler('confirmPassword', value)}
         />
       </View>
 
-      <TouchableOpacity>
-        <Text style={styles.forgot_button} >Forgot Password?</Text>
-      </TouchableOpacity>
-
-      <Button title="login" style={styles.loginBtn} onPress={() => {
+      <Button title="RESET PASSWORD" style={styles.loginBtn} onPress={() => {
         // Alert.alert('Login Successfull')
         Alert.alert(
           'Alert Title',
-          'Login Successfull', // <- this part is optional, you can pass an empty string
+          'Password Reset', // <- this part is optional, you can pass an empty string
           [
-            {text: 'OK', onPress: () => navigation.navigate('Home')},
+            {text: 'OK', onPress: () => navigation.navigate('Login')},
           ],
           // {cancelable: false},
         )
@@ -143,13 +139,9 @@ const Login = ({ navigation}) => {
 
 
       }}></Button>
-      <Button title="New Registration ?" style={styles.loginBtn} onPress={() => {
-        
-        navigation.navigate('Register')
-      }}></Button>
 
     </View>
   );
 }
 
-export default Login
+export default ResetPassword

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, Image, SafeAreaView, StyleSheet, ActivityIndicator, Button } from 'react-native';
 var logo = require('../assets/images/heal_logo.png')
+
 export default class Splash extends Component {
   render() {
     return (

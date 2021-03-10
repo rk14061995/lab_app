@@ -84,16 +84,14 @@ const styles = StyleSheet.create({
   }
 });
 
-const Login = ({ navigation}) => {
+const OtpVerification = ({ navigation}) => {
 
-  const [ login, setLogin ] = useState({
-    email: '',
-    password: ''
+  const [ verification, setVerification ] = useState({
+    otp: '',
   })
 
   const onChangeHandler = (inputName, inputValue) => {
-    console.debug(inputName + ' ' + inputValue)
-    setLogin(preValues => {
+    setVerification(preValues => {
       return {...preValues, [inputName]: inputValue}
     })
   }
@@ -107,49 +105,40 @@ const Login = ({ navigation}) => {
       <View style={styles.inputView}>
         <TextInput
           style={styles.TextInput}
-          placeholder="Email."
+          placeholder="OTP"
           placeholderTextColor="#003f5c"
-          value={login.email}
-          onChangeText={value => onChangeHandler('email', value)}
+          value={verification.otp}
+          onChangeText={value => onChangeHandler('otp', value)}
         />
       </View>
 
-      <View style={styles.inputView}>
-        <TextInput
-          style={styles.TextInput}
-          placeholder="Password."
-          placeholderTextColor="#003f5c"
-          secureTextEntry={true}
-          value={login.password}
-          onChangeText={value => onChangeHandler('password', value)}
-        />
-      </View>
-
-      <TouchableOpacity>
-        <Text style={styles.forgot_button} >Forgot Password?</Text>
-      </TouchableOpacity>
-
-      <Button title="login" style={styles.loginBtn} onPress={() => {
+      <Button title="Verify" style={styles.loginBtn} onPress={() => {
         // Alert.alert('Login Successfull')
-        Alert.alert(
-          'Alert Title',
-          'Login Successfull', // <- this part is optional, you can pass an empty string
-          [
-            {text: 'OK', onPress: () => navigation.navigate('Home')},
-          ],
-          // {cancelable: false},
-        )
+        { verification.otp === 1234 ? (
+           Alert.alert(
+                'Alert Title',
+                'Correct OTP', // <- this part is optional, you can pass an empty string
+                [
+                  {text: 'OK', onPress: () => navigation.navigate('ResetPassword')},
+                ],
+                // {cancelable: false},
+              )
+        ): (
+            Alert.alert(
+                'Alert Title',
+                'Wrong OTP', // <- this part is optional, you can pass an empty string
+                [
+                  {text: 'OK'},
+                ],
+                // {cancelable: false},
+              )
+        ) }
         // navigation.navigate('Home')
 
 
       }}></Button>
-      <Button title="New Registration ?" style={styles.loginBtn} onPress={() => {
-        
-        navigation.navigate('Register')
-      }}></Button>
-
     </View>
   );
 }
 
-export default Login
+export default OtpVerification
