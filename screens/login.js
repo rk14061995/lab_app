@@ -117,14 +117,12 @@ export default class Login extends Component{
               </TouchableOpacity>
         
                 <Button title="login" style={styles.loginBtn} onPress={()=>{
-                this.props.navigation.replace('Dashboard')
+                this.props.navigation.navigate('Home')
                   
         
                 }}></Button>
                 <Button title="New Registration ?" style={styles.loginBtn} onPress={()=>{
                   this.props.navigation.navigate('Register')
-                  // console.debug('Redirect to Register Page');
-        
                 }}></Button>
              
             </View>

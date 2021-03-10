@@ -1,71 +1,52 @@
-import React,{useState} from 'react';
+import React,{useState, useEffect} from 'react';
 import {View,Image,Text, StyleSheet, StatusBar,ScrollView,TextInput, TouchableOpacity,Button, SafeAreaView} from 'react-native';
-const styles = StyleSheet.create({
-   
-  });
+import { getLabList } from '../api/apicalls'
+
 
 const LabDetails= ()=>{
-  const api = [
-                {
-                    id:1,
-                    name:'Path Lab',
-                    contact_no:'+91-0000000000',
-                    email:'mail@gmail.com',
-                    website:'www.abc.com',
-                    desc:' a place equipped for experimental study in a science or for testing and analysis a research laboratory broadly : a place providing opportunity for experimentation, observation, or practice in a field of study.',
-                    img:require('../assets/images/blood.png'),
-                    startTime:'10:00 AM',
-                    closeTime:'5:30 PM',
-                    location:'Noida',
-                    tests:''
-                }
-      
-];
-const Test = {
-                statusCode: 200,
-                responseData: [
-                    {
-                        testId: 10,
-                        testName: "ECG",
-                        isChecked: false,
-                        color: 0,
-                        testParameterName: null,
-                        fileName: null,
-                        normalRange: null,
-                        presentValue: null
-                    },
-                    {
-                        testId: 11,
-                        testName: "Blood RE",
-                        isChecked: false,
-                        color: 0,
-                        testParameterName: null,
-                        fileName: null,
-                        normalRange: null,
-                        presentValue: null
-                    },
-                    {
-                        testId: 12,
-                        testName: "CBC + ESR",
-                        isChecked: false,
-                        color: 0,
-                        testParameterName: null,
-                        fileName: null,
-                        normalRange: null,
-                        presentValue: null
-                    },
-                    ]
-              };
-              console.log(Test.responseData);
+
+  const [api, setApi ] = useState([])
+
+  const preLoad = () => {
+    getLabList().then(response => {
+      // console.log("Runniing.....................")
+      setApi(response.responseData.lab)
+    })
+  }
+
+  useEffect(() => {
+    preLoad()
+  }, [])
             
     return(
-        <SafeAreaView style={{padding:15}}>
-          {/* <View>
-            <Text style={{fontSize:15,fontWeight:'bold', padding:10}}>Lab List</Text>
-          </View> */}
-          <View style={{backgroundColor:'red'}}>
-            <Text style={{fontSize:15,fontWeight:'bold', padding:10}}>Lab List</Text>
-          </View>
+        <SafeAreaView style={{padding:10, backgroundColor:'#e6e6fa'}}>
+          <ScrollView>
+            {api.map(ap => (
+            <TouchableOpacity key={ap.labProcessID} onPress={() => {
+              // console.debug(' Get Lab Details.. ');
+            }}>
+              <View style={{  marginTop: 10, marginBottom: 10, flexDirection: 'row', borderRadius:200 }}>
+                <View style={{ backgroundColor: 'white', paddingTop: 40, paddingBottom:40, width: '25%', alignItems: 'center' }}>
+                  <Image source={require('../assets/images/med.png')} style={{ width: 50, height: 50 }} />
+                </View>
+                <View style={{ backgroundColor: '#f8f8ff', padding: 10, width: '75%' }}>
+                  <Text style={{ fontSize: 15, fontWeight: 'bold', textDecorationLine: 'underline' }}> {ap.patientName}</Text>
+                  <Text>{ap.physicianName}</Text>
+                  <Text > {ap.gender}</Text>
+                  <Text > {ap.testName}</Text>
+                  <View style={{ flexDirection: 'row' }}>
+                    <Text> {ap.phoneNumber} - </Text>
+                    <Text> {ap.userName}</Text>
+                    <Text style={{ textAlign: 'right' }}> {ap.location}</Text>
+                  </View>
+
+                </View>
+              </View>
+            </TouchableOpacity>
+          ))}
+          </ScrollView>
+         
+         
            
         </SafeAreaView>
     );

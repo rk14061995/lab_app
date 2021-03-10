@@ -14,55 +14,74 @@ import LabDetails from './screens/LabDetails';
 
 const Tab = createBottomTabNavigator();
 const Home =()=>(
-  <Tab.Navigator tabBarOption={{
-      activeBackgroundColor:'tomato',
-      activeTintColor:'white',
-      inactiveBackgroundColor:'#eee',
-      inactiveTintColor:'black'
-  }}>
-  <Tab.Screen name="Home" component={Dashboard} options={{
-            tabBarIcon:()=> <MaterialCommunityIcons name="home" size={25}     />
-        }} />
-  <Tab.Screen name="Track Now" component={Dashboard} options={{
-            tabBarIcon:()=> <AntDesign name="find" size={24} color="black" />
-        }} />
-  <Tab.Screen name="Notification" component={Dashboard} options={{
-      tabBarIcon:()=> <EvilIcons name="bell" size={24} color="black" />
-  }} />
-  <Tab.Screen name="Setting" component={Dashboard} options={{
-      tabBarIcon:()=> <AntDesign name="setting" size={24} color="black" />
-  }} />
-  {/* <Tab.Screen name="Login" component={Login} /> */}
-</Tab.Navigator>
-)
-// const Home() {
-//   return (
-//     <Tab.Navigator>
-//       <Tab.Screen name="Dashboard" component={Dashboard} />
-//       <Tab.Screen name="Login" component={Login} />
-//     </Tab.Navigator>
-//   );
-// }
-
-
+              <Tab.Navigator tabBarOption={{
+                  activeBackgroundColor:'tomato',
+                  activeTintColor:'white',
+                  inactiveBackgroundColor:'#eee',
+                  inactiveTintColor:'black'
+              }}>
+                  <Tab.Screen name="Home" component={Dashboard} options={{
+                            tabBarIcon:()=> <MaterialCommunityIcons name="home" size={25}     />
+                        }} />
+                  <Tab.Screen name="Track Now" component={Dashboard} options={{
+                            tabBarIcon:()=> <AntDesign name="find" size={24} color="black" />
+                        }} />
+                  <Tab.Screen name="Notification"  component={LabDetails} options={{
+                      tabBarIcon:()=> <EvilIcons name="bell" size={24} color="black" />
+                  }} />
+                  <Tab.Screen name="Setting" component={Dashboard} options={{
+                      tabBarIcon:()=> <AntDesign name="setting" size={24} color="black" />
+                  }} />
+              </Tab.Navigator>
+          )
+          
+const LabTabNavigator=()=> {
+  return (
+          <Tab.Navigator tabBarOption={{
+                activeBackgroundColor:'tomato',
+                activeTintColor:'white',
+                inactiveBackgroundColor:'#eee',
+                inactiveTintColor:'black'
+            }}>
+                <Tab.Screen name="Home" component={Dashboard} options={{
+                          tabBarIcon:()=> <MaterialCommunityIcons name="home" size={25}     />
+                      }} />
+                <Tab.Screen name="Track Now" component={Dashboard} options={{
+                          tabBarIcon:()=> <AntDesign name="find" size={24} color="black" />
+                      }} />
+                <Tab.Screen name="Notification"  component={LabDetails} options={{
+                    tabBarIcon:()=> <EvilIcons name="bell" size={24} color="black" />
+                }} />
+                <Tab.Screen name="Setting" component={Dashboard} options={{
+                    tabBarIcon:()=> <AntDesign name="setting" size={24} color="black" />
+                }} />
+            </Tab.Navigator>
+  );
+}
+const LabStackNavigator= ()=>(
+  <Stack.Navigator initialRouteName="Login">
+    <Stack.Screen name="LabDetails" title="Lab List" component={LabTabNavigator} />
+  </Stack.Navigator>
+);
 
 
 const Stack =  createStackNavigator();
+
 const StackNavigator = ()=>(
-  <Stack.Navigator initialRouteName="Home">
-    <Stack.Screen name="Splash" component={Splash} />
+  <Stack.Navigator initialRouteName="Login">
+    <Stack.Screen name="Splash" component={Splash} header={null}/>
     <Stack.Screen name="Login" component={Login} />
     <Stack.Screen name="Register" component={Registration}/>
     <Stack.Screen name="Home" component={Home} />
-    <Stack.Screen name="Lab Details" component={LabDetails} />
-  
-  </Stack.Navigator>
+    <Stack.Screen name="LabDetails" title="Lab List" component={LabDetails} />
+  </Stack.Navigator>  
+
 )
 const App = () => {
   return (
     <NavigationContainer>
       <StackNavigator/>
     </NavigationContainer>
-  )
+   )
 }
 export default App;
