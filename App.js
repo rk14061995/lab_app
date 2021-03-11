@@ -10,20 +10,23 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import {MaterialCommunityIcons, AntDesign,EvilIcons} from '@expo/vector-icons'; 
 import Dashboard from './screens/dashboard';
 import LabDetails from './screens/LabDetails';
+import Notification from './screens/Notification';
 import AppointementDetail from './screens/AppointmentDetail';
 import OtpVerification from './screens/OtpVerification';
+import ResetPassword from './screens/ResetPassword';
 
 
 const Tab = createBottomTabNavigator();
 const Home =()=>(
               <Tab.Navigator >
                   <Tab.Screen name="Home" component={Dashboard} options={{
+                    headerShown:false,
                             tabBarIcon:()=> <MaterialCommunityIcons name="home" size={25}     />
                         }} />
                   <Tab.Screen name="Track Now" component={Dashboard} options={{
                             tabBarIcon:()=> <AntDesign name="find" size={24} color="black" />
                         }} />
-                  <Tab.Screen name="Notification"  component={LabDetails} options={{
+                  <Tab.Screen name="Notification"  component={Notification} options={{
                       tabBarIcon:()=> <EvilIcons name="bell" size={24} color="black" />
                   }} />
                   <Tab.Screen name="Setting" component={Dashboard} options={{
@@ -41,13 +44,15 @@ const StackNavigator = ()=>(
     <Stack.Screen name="Splash" component={Splash} header={null}/>
     <Stack.Screen name="Login" component={Login} options={{headerShown:false}}/>
     <Stack.Screen name="Register" component={Registration} options={{headerShown:false}}/>
-    <Stack.Screen name="Home" component={Home} />
+    <Stack.Screen name="Home" component={Home} options={{headerShown:false}} />
     <Stack.Screen name="AppointmentDetail" component={AppointementDetail}/>
     <Stack.Screen name="OtpVerification" options={{headerShown:false}} component={OtpVerification}/>
-    {/* <Stack.screens name="LabDetailsPage" title="Lab List" component={LabDetails} /> */}
+    <Stack.Screen name="LabDetails" component={LabDetails}/>
+    <Stack.Screen name="ResetPassword" title="Lab List" options={{headerShown:false}} component={ResetPassword} />
   </Stack.Navigator>  
 
 )
+
 
 // const 
 const App = () => {

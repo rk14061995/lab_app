@@ -2,6 +2,7 @@ import React,{useState} from 'react';
 import {View,Image,Text, StyleSheet,Alert, StatusBar,TextInput, TouchableOpacity,Button} from 'react-native';
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+
 const styles = StyleSheet.create({
   top_lab: {
     backgroundColor: 'grey',
@@ -29,6 +30,7 @@ const styles = StyleSheet.create({
   },
   container_login: {
     flex: 1,
+
     backgroundColor: "#cccffc",
     alignItems: "center",
     justifyContent: "center",
@@ -36,6 +38,7 @@ const styles = StyleSheet.create({
 
   image: {
     marginBottom: 40,
+
     width:200,
     height:200
   },
@@ -97,6 +100,8 @@ const Login = ({ navigation}) => {
   })
 
   const onChangeHandler = (inputName, inputValue) => {
+
+
     setLogin(preValues => {
       return {...preValues, [inputName]: inputValue}
     })
@@ -134,7 +139,13 @@ const Login = ({ navigation}) => {
             
           //   Alert.alert('');
           //  const navigation= useNavigation(); 
-           navigation.navigate('OtpVerification');
+           if(login.email.length > 0){
+             navigation.navigate('OtpVerification');
+           }else{
+              Alert.alert('Alert Title','Email field cannot be empty', [
+                { text: 'OK'}
+              ])
+           }
           }
         }>
           <Text style={styles.forgot_button} >Forgot Password?</Text>
@@ -144,7 +155,7 @@ const Login = ({ navigation}) => {
         <Button title="login" style={{marginTop:10}} onPress={() => {
           // Alert.alert('Login Successfull')
           Alert.alert(
-            'Alert Title',
+            'Forgot Password',
             'Login Successfull', // <- this part is optional, you can pass an empty string
             [
               {text: 'OK', onPress: () => navigation.navigate('Home')},
@@ -162,13 +173,9 @@ const Login = ({ navigation}) => {
           navigation.navigate('Register')
         }}></Button>  
       </View>
-      
-
-      
-      
-
     </View>
   );
 }
+
 
 export default Login
