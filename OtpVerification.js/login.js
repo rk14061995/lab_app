@@ -1,9 +1,7 @@
-
 import React,{useState} from 'react';
 import {View,Image,Text, StyleSheet,Alert, StatusBar,TextInput, TouchableOpacity,Button} from 'react-native';
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-
 const styles = StyleSheet.create({
   top_lab: {
     backgroundColor: 'grey',
@@ -31,21 +29,19 @@ const styles = StyleSheet.create({
   },
   container_login: {
     flex: 1,
-
-    backgroundColor: "#cccffc",
+    backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
   },
 
   image: {
     marginBottom: 40,
-
     width:200,
     height:200
   },
 
   inputView: {
-    backgroundColor: "#fff",
+    backgroundColor: "#FFC0CB",
     borderRadius: 30,
     width: "70%",
     height: 45,
@@ -55,11 +51,8 @@ const styles = StyleSheet.create({
   },
 
   TextInput: {
-    // backgroundColor:'red',
-    width:'100%',
     height: 50,
     flex: 1,
-    textAlign:'center',
     padding: 10,
     marginLeft: 20,
   },
@@ -101,8 +94,6 @@ const Login = ({ navigation}) => {
   })
 
   const onChangeHandler = (inputName, inputValue) => {
-
-
     setLogin(preValues => {
       return {...preValues, [inputName]: inputValue}
     })
@@ -135,18 +126,19 @@ const Login = ({ navigation}) => {
         />
       </View>
       <View>
-      <TouchableOpacity onPress={
+        <TouchableOpacity onPress={
           ()=>{
-            
+            Alert.alert(
+              'Alert Title',
+              'Login Successfull', // <- this part is optional, you can pass an empty string
+              [
+                {text: 'OK', onPress: () => navigation.navigate('Home')},
+              ],
+              // {cancelable: false},
+            )
           //   Alert.alert('');
           //  const navigation= useNavigation(); 
-           if(login.email.length > 0){
-             navigation.navigate('OtpVerification');
-           }else{
-              Alert.alert('Alert Title','Email field cannot be empty', [
-                { text: 'OK'}
-              ])
-           }
+          //  navigation.navigate('OtpVerification');
           }
         }>
           <Text style={styles.forgot_button} >Forgot Password?</Text>
@@ -156,7 +148,7 @@ const Login = ({ navigation}) => {
         <Button title="login" style={{marginTop:10}} onPress={() => {
           // Alert.alert('Login Successfull')
           Alert.alert(
-            'Forgot Password',
+            'Alert Title',
             'Login Successfull', // <- this part is optional, you can pass an empty string
             [
               {text: 'OK', onPress: () => navigation.navigate('Home')},
@@ -174,10 +166,13 @@ const Login = ({ navigation}) => {
           navigation.navigate('Register')
         }}></Button>  
       </View>
+      
+
+      
+      
+
     </View>
   );
 }
 
-
 export default Login
-

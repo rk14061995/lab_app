@@ -1,4 +1,3 @@
-
 import { useLinkProps } from "@react-navigation/native";
 import React, { useState, useEffect } from "react";
 import {
@@ -11,21 +10,25 @@ import {
   ScrollView,
   Text,
   Item,
-  Alert
+  Dimensions
 } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { getAllTestList } from "../api/apicalls";
 
-
 const Dashboard = (props) => {
 
   const [api, setApi] = useState([])
+  const [spinner, setSpinner] = useState(true)
+
+  const win = Dimensions.get('window')
+
+  const ratio = win.width/389
+  
 
   const preLoad = () => {
     getAllTestList().then(response => {
-      // console.log("Runniing.....................")
       setApi(response.responseData)
-      // console.debug('response -------------',response)
+      setSpinner(false)
     })
   }
 
@@ -44,8 +47,8 @@ const Dashboard = (props) => {
 
 
 
-  let categories = ['Blood Test', 'Skin Test', 'Lipid Test', 'RBC Test'];
-  let labs = ["Dr Path Lab", "Batra Lab", "Lal Path", "Chabra Labss"];
+  // let categories = ['Blood Test', 'Skin Test', 'Lipid Test', 'RBC Test'];
+  let labs = ["Dr Path Lab", "Batra Lab", "Lal Path", "Chabra Labss", "Chabra Labss", "Chabra Labss", "Chabra Labss", "Chabra Labss", "Chabra Labss", "Chabra Labss", "Chabra Labss"];
 
 
   return (
@@ -91,10 +94,13 @@ const Dashboard = (props) => {
               decelerationRate="fast"
               pagingEnabled
             >
+              {spinner && (<ActivityIndicator size='large' animating={spinner} color="#0000ff" />)}
               {api.map((cate) => (
                 <View
+                  key={cate.testName}
                   style={{
-                    width: 140,
+                    width: "100%",
+                    paddingRight: 10,
                     height: 50,
                     backgroundColor: '#ffc15e',
                     borderRadius: 20,
@@ -109,7 +115,7 @@ const Dashboard = (props) => {
                   />
                   <TouchableOpacity
                     onPress={() => {
-                      props.navigation.navigate('LabDetails')
+                      props.navigation.navigate('Notification')
                     }}
                   >
                     <Text
@@ -164,6 +170,7 @@ const Dashboard = (props) => {
                   marginHorizontal: 5,
                   flexDirection: "column",
                 }}
+                key={Math.random()}
               >
                 <Image source={require("../assets/images/dib.png")} />
                 <TouchableOpacity
@@ -180,7 +187,7 @@ const Dashboard = (props) => {
       </View>
       {/* <View style={{padding:10, }}> */}
       <Image
-        style={{ resizeMode: "cover", margin: 5, width: "100%" }}
+        style={{ width: win.width, height: 142*ratio }}
         source={require("../assets/images/b3.png")}
       />
       {/* </View>     */}

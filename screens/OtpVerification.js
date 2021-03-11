@@ -30,17 +30,20 @@ const styles = StyleSheet.create({
   },
   container_login: {
     flex: 1,
-    backgroundColor: "#fff",
+
+    backgroundColor: "#cccffc",
     alignItems: "center",
     justifyContent: "center",
   },
 
   image: {
     marginBottom: 40,
+    width:200,
+    height:200
   },
 
   inputView: {
-    backgroundColor: "#FFC0CB",
+    backgroundColor: "#fff",
     borderRadius: 30,
     width: "70%",
     height: 45,
@@ -99,7 +102,7 @@ const OtpVerification = ({ navigation}) => {
 
     <View style={styles.container_login}>
 
-      <Image style={styles.image} source={require("../assets/images/dib.png")} />
+      <Image style={styles.image} source={require("../assets/images/password.png")} />
 
       <StatusBar style="auto" />
       <View style={styles.inputView}>
@@ -112,33 +115,37 @@ const OtpVerification = ({ navigation}) => {
         />
       </View>
 
-      <Button title="Verify" style={styles.loginBtn} onPress={() => {
-        // Alert.alert('Login Successfull')
-        { verification.otp === 1234 ? (
-           Alert.alert(
-                'Alert Title',
-                'Correct OTP', // <- this part is optional, you can pass an empty string
-                [
-                  {text: 'OK', onPress: () => navigation.navigate('ResetPassword')},
-                ],
-                // {cancelable: false},
-              )
-        ): (
+      <View style={{width:'68%', borderRadius:25}}>
+        <Button title="Verify" style={styles.loginBtn} onPress={() => {
+          // Alert.alert('Login Successfull')
+          { verification.otp == 1234 ? (
             Alert.alert(
-                'Alert Title',
-                'Wrong OTP', // <- this part is optional, you can pass an empty string
-                [
-                  {text: 'OK'},
-                ],
-                // {cancelable: false},
-              )
-        ) }
-        // navigation.navigate('Home')
+                  'Alert Title',
+                  'Correct OTP', // <- this part is optional, you can pass an empty string
+                  [
+                    {text: 'OK', onPress: () => navigation.navigate('ResetPassword')},
+                  ],
+                  // {cancelable: false},
+                )
+          ): (
+              Alert.alert(
+                  'Alert Title',
+                  'Wrong OTP', // <- this part is optional, you can pass an empty string
+                  [
+                    {text: 'OK'},
+                  ],
+                  // {cancelable: false},
+                )
+          ) }
+          // navigation.navigate('Home')
 
 
-      }}></Button>
+        }}></Button>
+      </View>
+
     </View>
   );
 }
+
 
 export default OtpVerification

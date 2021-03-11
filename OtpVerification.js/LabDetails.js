@@ -1,19 +1,16 @@
 import React,{useState, useEffect} from 'react';
-import {View,Image,Text, StyleSheet, StatusBar,ScrollView,TextInput, TouchableOpacity,Button, SafeAreaView, ActivityIndicator} from 'react-native';
-
+import {View,Image,Text, StyleSheet, StatusBar,ScrollView,TextInput, TouchableOpacity,Button, SafeAreaView} from 'react-native';
 import { getLabList } from '../api/apicalls'
 
 
 const LabDetails= ()=>{
 
   const [api, setApi ] = useState([])
-  const [ spinner, setSpinner ] = useState(true)
 
   const preLoad = () => {
     getLabList().then(response => {
       // console.log("Runniing.....................")
       setApi(response.responseData.lab)
-      setSpinner(false)
     })
   }
 
@@ -24,7 +21,6 @@ const LabDetails= ()=>{
     return(
         <SafeAreaView style={{padding:10, backgroundColor:'#e6e6fa'}}>
           <ScrollView>
-            { spinner && ( <ActivityIndicator size='large' animating={spinner} color="#0000ff"/>)}
             {api.map(ap => (
             <TouchableOpacity key={ap.labProcessID} onPress={() => {
               // console.debug(' Get Lab Details.. ');

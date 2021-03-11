@@ -8,7 +8,7 @@ const Registration = ({ navigation }) => {
     email: '',
     password: ''
   })
-
+  
   const onChangeHandler = (inputName, inputValue) => {
     setRegister(preValues => {
       return { ...preValues, [inputName]: inputValue }
@@ -16,7 +16,7 @@ const Registration = ({ navigation }) => {
   }
   return (
     <View style={styles.container_login}>
-      <Image style={styles.image} source={require("../assets/images/dib.png")} />
+      <Image style={styles.image} source={require("../assets/images/voter.png")} />
 
       {/* <StatusBar style="auto" /> */}
       <View style={styles.inputView}>
@@ -59,21 +59,21 @@ const Registration = ({ navigation }) => {
           onChangeText={value => onChangeHandler('password', value)}
         />
       </View>
+      <View style={{width:'70%'}}>
+        <Button title="Register" style={styles.register_now} onPress={() => {
+          // navigation.navigate('Register')
+          // console.debug('Redirect to Register Page');
+          Alert.alert(
+            'Alert Title',
+            'Registration Successfull', // <- this part is optional, you can pass an empty string
+            [
+              { text: 'OK', onPress: () => navigation.navigate('Login') },
+            ],
+            // {cancelable: false},
+          )
 
-
-      <Button title="Register" style={styles.register_now} onPress={() => {
-        // navigation.navigate('Register')
-        // console.debug('Redirect to Register Page');
-        Alert.alert(
-          'Alert Title',
-          'Registration Successfull', // <- this part is optional, you can pass an empty string
-          [
-            { text: 'OK', onPress: () => navigation.navigate('Login') },
-          ],
-          // {cancelable: false},
-        )
-
-      }}></Button>
+        }}></Button>
+      </View>
 
     </View>
   )
@@ -106,17 +106,20 @@ const styles = StyleSheet.create({
   },
   container_login: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "#cccfff",
     alignItems: "center",
     justifyContent: "center",
   },
 
   image: {
     marginBottom: 40,
+
+    width:200,
+    height:200
   },
 
   inputView: {
-    backgroundColor: "#FFC0CB",
+    backgroundColor: "#fff",
     borderRadius: 30,
     width: "70%",
     height: 45,
@@ -127,6 +130,9 @@ const styles = StyleSheet.create({
 
   TextInput: {
     height: 50,
+
+    width:'100%',
+    textAlign:'center',
     flex: 1,
     padding: 10,
     marginLeft: 20,
