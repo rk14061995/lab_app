@@ -5,7 +5,7 @@ const Notification = () => {
 
     const api = [
         {
-            title: 'ECG',
+            title: 'NT',
             message: 'Request Approved'
         },
         {
@@ -46,8 +46,8 @@ const Notification = () => {
         <SafeAreaView style={{ padding: 10, backgroundColor: '#e6e6fa' }}>
             <ScrollView>
                 {api.map(ap => (
-                    <TouchableOpacity key={ap.labProcessID} onPress={() => {
-                        // console.debug(' Get Lab Details.. ');
+                    <TouchableOpacity key={ap.title}  onPress={() => {
+                        
                     }}>
                         <View style={{ marginTop: 10, marginBottom: 10, flexDirection: 'row', borderRadius: 200 }}>
                             <View style={{ backgroundColor: 'white', paddingTop: 40, paddingBottom: 40, width: '25%', alignItems: 'center' }}>
@@ -69,3 +69,4 @@ const Notification = () => {
 }
 
 export default Notification
+

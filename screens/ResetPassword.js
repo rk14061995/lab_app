@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#cccffc',
     justifyContent: 'center',
     alignItems: 'center'
   },
@@ -30,17 +30,20 @@ const styles = StyleSheet.create({
   },
   container_login: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "#cccffc",
     alignItems: "center",
     justifyContent: "center",
   },
 
   image: {
     marginBottom: 40,
+
+    width:200,
+    height:200,
   },
 
   inputView: {
-    backgroundColor: "#FFC0CB",
+    backgroundColor: "#fff",
     borderRadius: 30,
     width: "70%",
     height: 45,
@@ -51,6 +54,9 @@ const styles = StyleSheet.create({
 
   TextInput: {
     height: 50,
+
+    textAlign:'center',
+    width:'70%',
     flex: 1,
     padding: 10,
     marginLeft: 20,
@@ -101,7 +107,8 @@ const ResetPassword = ({ navigation}) => {
 
     <View style={styles.container_login}>
 
-      <Image style={styles.image} source={require("../assets/images/dib.png")} />
+
+      <Image style={styles.image} source={require("../assets/images/rotation-lock.png")} />
 
       <StatusBar style="auto" />
       <View style={styles.inputView}>
@@ -145,3 +152,4 @@ const ResetPassword = ({ navigation}) => {
 }
 
 export default ResetPassword
+

@@ -115,7 +115,7 @@ const Dashboard = (props) => {
                   />
                   <TouchableOpacity
                     onPress={() => {
-                      props.navigation.navigate('Notification')
+                      props.navigation.navigate('LabDetails')
                     }}
                   >
                     <Text
