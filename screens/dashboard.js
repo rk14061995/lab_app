@@ -1,20 +1,35 @@
 import { useLinkProps } from "@react-navigation/native";
 import React, { useState, useEffect } from "react";
+import { SliderBox } from "react-native-image-slider-box";
+import GetLocation from 'react-native-get-location';
 import {
   View,
+ TextInput,
   Image,
   SafeAreaView,
   StyleSheet,
   ActivityIndicator,
   Button,
   ScrollView,
-  Text,
+  Text,Input,
   Item,
   Dimensions
 } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { getAllTestList } from "../api/apicalls";
 
+
+GetLocation.getCurrentPosition({
+  enableHighAccuracy: true,
+  timeout: 15000,
+})
+.then(location => {
+  console.debug(location);
+})
+.catch(error => {
+  const { code, message } = error;
+  console.warn(code, message);
+})
 const Dashboard = (props) => {
 
   const [api, setApi] = useState([])
@@ -53,12 +68,33 @@ const Dashboard = (props) => {
 
   return (
     <ScrollView style={{ flex: 1, flexDirection: "column" }}>
-      {/* <View>
-                    <Image source={require('../assets/images/b1.png')}/>
-                </View> */}
-
+      <View style={{padding:20}}>
+        <TextInput
+          style={{ height: 40, borderColor: 'gray', borderWidth: 1, textAlign:'center' }} placeholder="Noida, India, 201301"
+          onChangeText={text => onChangeText(text)}
+          value={25}
+        />
+      </View>
+      <SliderBox 
+        sliderBoxHeight={250}
+        // sliderBoxWeight='100%'
+          images={images} autoplay 
+          onCurrentImagePressed={index =>
+            console.warn(`image ${index} pressed`)
+          }
+          paginationBoxStyle={{
+            position: 'absolute',
+            bottom: 0,
+            padding: 0,
+            alignItems: 'center',
+            alignSelf: 'center',
+            justifyContent: 'center',
+            paddingVertical: 10,
+          }}
+          ImageComponentStyle={{borderRadius: 15, width: '90%',size:'stretch', marginTop: 5}}
+        />
       <View>
-        <ScrollView
+        {/* <ScrollView
           horizontal={true}
           showsHorizontalScrollIndicator={false}
           scrollEventThrottle={100}
@@ -78,7 +114,7 @@ const Dashboard = (props) => {
               />
             </View>
           ))}
-        </ScrollView>
+        </ScrollView> */}
       </View>
 
       {/* <Image source={require('../assets/images/b1.png')}/> */}
