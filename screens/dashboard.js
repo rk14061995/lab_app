@@ -1,29 +1,78 @@
 import { useLinkProps } from "@react-navigation/native";
 import React, { useState, useEffect } from "react";
+import { SliderBox } from "react-native-image-slider-box";
+// import GetLocation from 'react-native-get-location';
+import Geolocation from 'react-native-geolocation-service'
 import {
   View,
+  TextInput,
   Image,
   SafeAreaView,
   StyleSheet,
   ActivityIndicator,
   Button,
   ScrollView,
-  Text,
+  Text, Input,
   Item,
   Dimensions
 } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { getAllTestList } from "../api/apicalls";
+import { Alert } from "react-native";
 
+
+// GetLocation.getCurrentPosition({
+//   enableHighAccuracy: true,
+//   timeout: 15000,
+// })
+//   .then(location => {
+//     console.debug(location);
+//   })
+//   .catch(error => {
+//     const { code, message } = error;
+//     console.warn(code, message);
+//   })
 const Dashboard = (props) => {
 
   const [api, setApi] = useState([])
   const [spinner, setSpinner] = useState(true)
 
+  const [location, setLocation] = useState({
+    latitude: 0,
+    longitude: 0,
+    coordinates: []
+  })
+
   const win = Dimensions.get('window')
 
-  const ratio = win.width/389
-  
+  const ratio = win.width / 389
+
+
+  const locationLoad = () => {
+    Geolocation.getCurrentPosition(
+      position => {
+        setLocation(preValues => {
+          return {
+            ...preValues, latitude: position.coords.latitude,
+            longitude: position.coords.longitude,
+            coordinates: this.state.coordinates.concat({
+              latitude: position.coords.latitude,
+              longitude: position.coords.longitude
+            })
+          }
+        })
+      },
+      error => {
+        Alert.alert(error.message.toString());
+      },
+      {
+        showLocationDialog: true,
+        enableHighAccuracy: true,
+        timeout: 20000,
+        maximumAge: 0
+      }
+    );
+  }
 
   const preLoad = () => {
     getAllTestList().then(response => {
@@ -35,6 +84,7 @@ const Dashboard = (props) => {
   useEffect(() => {
     preLoad()
   }, [])
+
 
   let images = [
     require("../assets/images/b1.png"), // Local image
@@ -53,36 +103,26 @@ const Dashboard = (props) => {
 
   return (
     <ScrollView style={{ flex: 1, flexDirection: "column" }}>
-      {/* <View>
-                    <Image source={require('../assets/images/b1.png')}/>
-                </View> */}
-
-      <View>
-        <ScrollView
-          horizontal={true}
-          showsHorizontalScrollIndicator={false}
-          scrollEventThrottle={100}
-          decelerationRate="fast"
-          pagingEnabled
-        >
-          {images.map((img, key) => (
-            <View key={key}>
-              <Image
-                source={img}
-                style={{
-                  height: 200,
-                  marginTop: 10,
-                  marginBottom: 10,
-                  resizeMode: "cover",
-                }}
-              />
-            </View>
-          ))}
-        </ScrollView>
+      <View style={{ padding: 20 }}>
+        <TextInput
+          style={{ height: 40, borderColor: 'gray', borderWidth: 1, textAlign: 'center' }} placeholder="Noida, India, 201301"
+        />
       </View>
-
-      {/* <Image source={require('../assets/images/b1.png')}/> */}
-
+      <SliderBox
+        sliderBoxHeight={250}
+        // sliderBoxWeight='100%'
+        images={images} autoplay
+        paginationBoxStyle={{
+          position: 'absolute',
+          bottom: 0,
+          padding: 0,
+          alignItems: 'center',
+          alignSelf: 'center',
+          justifyContent: 'center',
+          paddingVertical: 10,
+        }}
+        ImageComponentStyle={{ borderRadius: 15, width: '90%', marginTop: 5 }}
+      />
       <View>
         <Text style={styles.label}>Catgories</Text>
         <View style={styles.cat_}>
@@ -187,7 +227,7 @@ const Dashboard = (props) => {
       </View>
       {/* <View style={{padding:10, }}> */}
       <Image
-        style={{ width: win.width, height: 142*ratio }}
+        style={{ width: win.width, height: 142 * ratio }}
         source={require("../assets/images/b3.png")}
       />
       {/* </View>     */}

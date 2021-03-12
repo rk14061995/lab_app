@@ -15,7 +15,7 @@ import Notification from './screens/Notification';
 import AppointementDetail from './screens/AppointmentDetail';
 import OtpVerification from './screens/OtpVerification';
 import ResetPassword from './screens/ResetPassword';
-
+import SliderImage from './screens/Slider';
 
 const Tab = createBottomTabNavigator();
 const Home =()=>(
@@ -48,7 +48,9 @@ const StackNavigator = () => (
     <Stack.Screen name="Home" component={Home} options={{headerShown:false}} />
     <Stack.Screen name="AppointmentDetail" component={AppointementDetail}/>
     <Stack.Screen name="OtpVerification" options={{headerShown:false}} component={OtpVerification}/>
-    <Stack.Screen name="LabDetails" component={LabDetails} options={{headerShown: false}}/>
+
+    <Stack.Screen name="LabDetails" component={LabDetails}/>
+    <Stack.Screen name="SliderImage" component={SliderImage}/>
     <Stack.Screen name="ResetPassword" title="Lab List" options={{headerShown:false}} component={ResetPassword} />
   </Stack.Navigator>  
 
