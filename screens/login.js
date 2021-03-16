@@ -156,7 +156,7 @@ const Login = ({ navigation}) => {
         <Button title="login" style={{marginTop:10}} onPress={() => {
           // Alert.alert('Login Successfull')
           Alert.alert(
-            'Forgot Password',
+            'Login',
             'Login Successfull', // <- this part is optional, you can pass an empty string
             [
               {text: 'OK', onPress: () => navigation.navigate('Home')},

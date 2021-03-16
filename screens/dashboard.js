@@ -1,8 +1,6 @@
-import { useLinkProps } from "@react-navigation/native";
 import React, { useState, useEffect } from "react";
 import { SliderBox } from "react-native-image-slider-box";
-// import GetLocation from 'react-native-get-location';
-import Geolocation from 'react-native-geolocation-service'
+// import GeoCoder from 'react-native-geocoding'
 import {
   View,
   TextInput,
@@ -14,65 +12,37 @@ import {
   ScrollView,
   Text, Input,
   Item,
+  Alert,
   Dimensions
 } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { getAllTestList } from "../api/apicalls";
-import { Alert } from "react-native";
 
 
-// GetLocation.getCurrentPosition({
-//   enableHighAccuracy: true,
-//   timeout: 15000,
-// })
-//   .then(location => {
-//     console.debug(location);
-//   })
-//   .catch(error => {
-//     const { code, message } = error;
-//     console.warn(code, message);
-//   })
+
 const Dashboard = (props) => {
 
   const [api, setApi] = useState([])
   const [spinner, setSpinner] = useState(true)
 
-  const [location, setLocation] = useState({
-    latitude: 0,
-    longitude: 0,
-    coordinates: []
-  })
+  const [location, setLocation] = useState('')
 
   const win = Dimensions.get('window')
 
   const ratio = win.width / 389
 
-
-  const locationLoad = () => {
-    Geolocation.getCurrentPosition(
-      position => {
-        setLocation(preValues => {
-          return {
-            ...preValues, latitude: position.coords.latitude,
-            longitude: position.coords.longitude,
-            coordinates: this.state.coordinates.concat({
-              latitude: position.coords.latitude,
-              longitude: position.coords.longitude
-            })
-          }
-        })
-      },
-      error => {
-        Alert.alert(error.message.toString());
-      },
-      {
-        showLocationDialog: true,
-        enableHighAccuracy: true,
-        timeout: 20000,
-        maximumAge: 0
-      }
-    );
-  }
+  // const findCoordinates = () => {
+  //   navigator.geolocation.getCurrentPosition(position => {
+  //     GeoCoder.from(position.coords.latitude, position.coords.longitude).then(json => {
+  //       let addressComponent = json.result[0].address_components
+  //       setLocation(addressComponent)
+  //       console.debug(addressComponent)
+  //     })
+  //   },
+  //     error => Alert.alert(error.message),
+  //     { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 })
+  //   console.debug(Geolocation)
+  // }
 
   const preLoad = () => {
     getAllTestList().then(response => {
@@ -84,6 +54,7 @@ const Dashboard = (props) => {
   useEffect(() => {
     preLoad()
   }, [])
+
 
 
   let images = [
@@ -103,10 +74,10 @@ const Dashboard = (props) => {
 
   return (
     <ScrollView style={{ flex: 1, flexDirection: "column" }}>
-      <View style={{ padding: 20 }}>
-        <TextInput
-          style={{ height: 40, borderColor: 'gray', borderWidth: 1, textAlign: 'center' }} placeholder="Noida, India, 201301"
-        />
+      <View style={{ padding: 20 }} >
+        <Text style={{ height: 40, borderColor: 'gray', borderWidth: 1, textAlign: 'center' }}>
+          {location}
+        </Text>
       </View>
       <SliderBox
         sliderBoxHeight={250}

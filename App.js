@@ -16,6 +16,7 @@ import AppointementDetail from './screens/AppointmentDetail';
 import OtpVerification from './screens/OtpVerification';
 import ResetPassword from './screens/ResetPassword';
 import SliderImage from './screens/Slider';
+import LabForm from './screens/LabForm';
 
 const Tab = createBottomTabNavigator();
 const Home =()=>(
@@ -46,10 +47,10 @@ const StackNavigator = () => (
     <Stack.Screen name="Login" component={Login} options={{headerShown:false}}/>
     <Stack.Screen name="Register" component={Registration} options={{headerShown:false}}/>
     <Stack.Screen name="Home" component={Home} options={{headerShown:false}} />
-    <Stack.Screen name="AppointmentDetail" component={AppointementDetail}/>
     <Stack.Screen name="OtpVerification" options={{headerShown:false}} component={OtpVerification}/>
-
     <Stack.Screen name="LabDetails" component={LabDetails}/>
+    <Stack.Screen name="LabForm" component={LabForm}/>
+    <Stack.Screen name="AppointmentDetail" component={AppointementDetail}/>
     <Stack.Screen name="SliderImage" component={SliderImage}/>
     <Stack.Screen name="ResetPassword" title="Lab List" options={{headerShown:false}} component={ResetPassword} />
   </Stack.Navigator>  
